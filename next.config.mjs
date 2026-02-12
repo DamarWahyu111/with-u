@@ -2,7 +2,6 @@
 const nextConfig = {
   output: 'export',
   distDir: 'docs',
-  basePath: '/with-u',
   typescript: {
     ignoreBuildErrors: true,
   }
