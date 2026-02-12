@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  outdir: 'docs',
+  distDir: 'docs',
   basePath: '/with-u',
   typescript: {
     ignoreBuildErrors: true,
