@@ -8,6 +8,7 @@ interface PhotoItem {
   id: number;
   title: string;
   color: string;
+  image: string;
 }
 
 export function PhotoGallery3D() {
@@ -18,20 +19,20 @@ export function PhotoGallery3D() {
   const slideIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const photos: PhotoItem[] = [
-    { id: 1, title: 'Moment 1', color: 'from-pink-400 to-red-400' },
-    { id: 2, title: 'Moment 2', color: 'from-red-400 to-purple-400' },
-    { id: 3, title: 'Moment 3', color: 'from-purple-400 to-pink-400' },
-    { id: 4, title: 'Moment 4', color: 'from-pink-300 to-rose-300' },
-    { id: 5, title: 'Moment 5', color: 'from-red-300 to-pink-300' },
-    { id: 6, title: 'Moment 6', color: 'from-purple-300 to-rose-300' },
-    { id: 7, title: 'Moment 7', color: 'from-pink-500 to-red-500' },
-    { id: 8, title: 'Moment 8', color: 'from-rose-400 to-purple-400' },
-    { id: 9, title: 'Moment 9', color: 'from-red-500 to-purple-500' },
-    { id: 10, title: 'Moment 10', color: 'from-pink-400 to-rose-400' },
-    { id: 11, title: 'Moment 11', color: 'from-purple-500 to-pink-500' },
-    { id: 12, title: 'Moment 12', color: 'from-red-400 to-pink-500' },
-    { id: 13, title: 'Moment 13', color: 'from-rose-300 to-purple-300' },
-    { id: 14, title: 'Moment 14', color: 'from-pink-500 to-purple-400' },
+    { id: 1, title: 'Moment 1', color: 'from-pink-400 to-red-400', image: '/photos/moment1.jpg' },
+    { id: 2, title: 'Moment 2', color: 'from-red-400 to-purple-400', image: '/photos/moment2.jpg' },
+    { id: 3, title: 'Moment 3', color: 'from-purple-400 to-pink-400', image: '/photos/moment3.jpg' },
+    { id: 4, title: 'Moment 4', color: 'from-pink-300 to-rose-300', image: '/photos/moment4.jpg' },
+    { id: 5, title: 'Moment 5', color: 'from-red-300 to-pink-300', image: '/photos/moment5.jpg' },
+    { id: 6, title: 'Moment 6', color: 'from-purple-300 to-rose-300', image: '/photos/moment6.jpg' },
+    { id: 7, title: 'Moment 7', color: 'from-pink-500 to-red-500', image: '/photos/moment7.jpg' },
+    { id: 8, title: 'Moment 8', color: 'from-rose-400 to-purple-400', image: '/photos/moment8.jpg' },
+    { id: 9, title: 'Moment 9', color: 'from-red-500 to-purple-500', image: '/photos/moment9.jpg' },
+    { id: 10, title: 'Moment 10', color: 'from-pink-400 to-rose-400', image: '/photos/moment10.jpg' },
+    { id: 11, title: 'Moment 11', color: 'from-purple-500 to-pink-500', image: '/photos/moment11.jpg' },
+    { id: 12, title: 'Moment 12', color: 'from-red-400 to-pink-500', image: '/photos/moment12.jpg' },
+    { id: 13, title: 'Moment 13', color: 'from-rose-300 to-purple-300', image: '/photos/moment13.jpg' },
+    { id: 14, title: 'Moment 14', color: 'from-pink-500 to-purple-400', image: '/photos/moment14.jpg' },
   ];
 
   useEffect(() => {
@@ -150,10 +151,17 @@ export function PhotoGallery3D() {
               <div
                 className={`w-full h-full rounded-2xl shadow-2xl bg-gradient-to-br ${photo.color} flex items-center justify-center overflow-hidden group hover:shadow-primary/50 hover:shadow-3xl transition-shadow duration-300`}
               >
-                <div className="text-center space-y-4">
-                  <div className="text-5xl">❤️</div>
-                  <h3 className="text-white font-bold text-lg">{photo.title}</h3>
-                  <p className="text-white/80 text-sm">Click to view</p>
+                <img 
+                  src={photo.image} 
+                  alt={photo.title}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2224%22 fill=%22%23999%22%3ENo Image%3C/text%3E%3C/svg%3E';
+                  }}
+                />
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <h3 className="text-white font-bold text-lg drop-shadow-lg">{photo.title}</h3>
+                  <p className="text-white/80 text-sm drop-shadow">Click to view</p>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
               </div>
